@@ -7,28 +7,10 @@ const server = Hapi.server({
     host: 'localhost'
 });
 
-server.route({
-    method: 'GET',
-    path: '/',
-    handler: (request, h) => {
-
-        return 'Hello, world!';
-    }
-});
-
-server.route({
-  method: 'GET',
-  path: '/{name}',
-  handler: (request, h) => {
-
-    return `Hello, ${encodeURIComponent(request.params.name)}!`
-  }
-})
-
 
 server.route({
     method: 'GET',
-    path: '/test',
+    path: '/swapi',
     handler: async(request, h) => {
 
 
@@ -36,8 +18,6 @@ server.route({
 
 
       let response = await axios.get('https://swapi.co/api/people/2')
-
-
 
       console.log(response.data)
         return response.data
@@ -52,10 +32,10 @@ const init = async () => {
 
   server.route({
       method:  'GET',
-      path:    '/hello',
+      path:    '/',
       handler: (request, h) => {
 
-        return h.file('./public/hello.html');
+        return h.file('./public/home.html');
     }
   })
 
