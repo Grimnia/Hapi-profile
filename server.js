@@ -21,7 +21,7 @@ server.route({
   path: '/{name}',
   handler: (request, h) => {
 
-    return `Hello, ${encodeURIComponent(request.params.name)}!` 
+    return `Hello, ${encodeURIComponent(request.params.name)}!`
   }
 })
 
@@ -48,9 +48,21 @@ server.route({
 
 const init = async () => {
 
-    await server.start();
-    console.log(`Server running at: ${server.info.uri}`);
-};
+  await server.register(require('inert'))
+
+  server.route({
+      method:  'GET',
+      path:    '/hello',
+      handler: (request, h) => {
+
+        return h.file('./public/hello.html');
+    }
+  })
+
+  await server.start();
+  console.log(`Server running at: ${server.info.uri}`);
+}
+
 
 process.on('unhandledRejection', (err) => {
 
