@@ -11,6 +11,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "hapi": "^17.8.1",
+    "hapi-pino": "^5.1.0",
     "inert": "^5.1.2"
   }
 }

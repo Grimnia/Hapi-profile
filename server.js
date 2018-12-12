@@ -8,23 +8,6 @@ const server = Hapi.server({
 });
 
 
-server.route({
-    method: 'GET',
-    path: '/swapi',
-    handler: async(request, h) => {
-
-
-      // makes get request to nasa websitr , get the html reponse and retutn in
-
-
-      let response = await axios.get('https://swapi.co/api/people/2')
-
-      console.log(response.data)
-        return response.data
-    }
-});
-
-
 
 const init = async () => {
 
@@ -43,6 +26,21 @@ const init = async () => {
   console.log(`Server running at: ${server.info.uri}`);
 }
 
+server.route({
+  method: 'GET',
+  path: '/nasa',
+  handler: async(request, h) => {
+
+
+    // makes get request to nasa websitr , get the html reponse and retutn in
+
+
+    let response = await axios.get("https://api.nasa.gov/planetary/apod?api_key=hGYFl8ADHKqJHtKZN1RoZS7JuDFGTzfgwze1lj1y")
+
+    console.log(response.data)
+    return response.data
+  }
+});
 
 process.on('unhandledRejection', (err) => {
 
